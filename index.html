@@ -5,7 +5,7 @@
   <script>
     angular.module('myApp', [])
            .controller('myController', function($scope, $http) {
-              $http.get('myData.json')
+              $http.get('https://github.com/itzmmohit/Lab_7/blob/main/myData.json')
                    .then(function(response) {
                       $scope.data = response.data;
                    });
