@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script>
+    angular.module('myApp', [])
+           .controller('myController', function($scope, $http) {
+              $http.get('myData.json')
+                   .then(function(response) {
+                      $scope.data = response.data;
+                   });
+           })
+           .filter('truncate', function() {
+              return function(input, chars) {
+                if (isNaN(chars)) {
+                  return input;
+                }
+                if (chars <= 0) {
+                  return '';
+                }
+                if (input && input.length > chars) {
+                  return input.substring(0, chars) + '...';
+                }
+                return input;
+              };
+           })
+           .filter('timecode', function() {
+              return function(seconds) {
+                if (isNaN(seconds)) {
+                  return '00:00:00';
+                }
+                var hours = Math.floor(seconds / 3600);
+                var minutes = Math.floor((seconds % 3600) / 60);
+                seconds = Math.floor(seconds % 60);
+                return (hours < 10 ? '0' + hours : hours) + ':' +
+                       (minutes < 10 ? '0' + minutes : minutes) + ':' +
+                       (seconds < 10 ? '0' + seconds : seconds);
+              };
+           });
+  </script>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+  <input type="text" ng-model="searchTerm">
+  <ul>
+    <li ng-repeat="video in data.videos | filter:searchTerm">
+      {{ video.id }} - {{ video.title | truncate:30 }} - {{ video.duration | timecode }} - {{ video.genre | lowercase }} - {{ video.rating | currency }}
+    </li>
+  </ul>
+</body>
+</html>

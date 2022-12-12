@@ -1,0 +1,46 @@
+{
+  "videos": [
+    {
+      "id": 1,
+      "title": "The Godfather",
+      "duration": 178,
+      "genre": "Drama",
+      "rating": 9.2
+    },
+    {
+      "id": 2,
+      "title": "The Shawshank Redemption",
+      "duration": 142,
+      "genre": "Drama",
+      "rating": 9.3
+    },
+    {
+      "id": 3,
+      "title": "The Dark Knight",
+      "duration": 152,
+      "genre": "Action",
+      "rating": 9.0
+    },
+    {
+      "id": 4,
+      "title": "Pulp Fiction",
+      "duration": 154,
+      "genre": "Crime",
+      "rating": 8.9
+    },
+    {
+      "id": 5,
+      "title": "The Matrix",
+      "duration": 136,
+      "genre": "Sci-Fi",
+      "rating": 8.7
+    },
+    {
+      "id": 6,
+      "title": "Fight Club",
+      "duration": 139,
+      "genre": "Drama",
+      "rating": 8.8
+    }
+  ]
+}
