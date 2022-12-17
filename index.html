@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+    <script src="app.js"></script>
+    <title>Lab 7: Angular</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            font-family:Arial, Helvetica, sans-serif ;
+        }
+        table,th,td{
+            border: 1px solid;
+            border-collapse: collapse;
+            padding: 5px 2px 5px 2px;
+            text-align:center;
+        }
+        th {
+            cursor: pointer;
+            background-color: rgb(162, 225, 225);
+        }
+        h1{
+            margin-top: 3em;
+            margin-bottom: 1em;
+            text-align: center;
+            text-shadow: 2px 4px 9px;
+        }
+        section{
+            display: flex;
+            justify-content: center;
+        }
+
+        div{
+            border: 1px solid;
+            padding-top: 1em;
+        }
+    </style>
+</head>
+<body ng-app="lab6App" style="background-color: rgb(199, 137, 137);">
+    <h1>Nirvana Database</h1>
+    <section>
+    <div ng-controller="MyController">
+        No of rows: <input type="number" ng-model="limit" min="1" max={{rowLimit}}>
+        Search:<input type="search" ng-model="search" placeholder="Search Something"><br><br>
+        <table>
+            <tr>
+                <th ng-click="setVD()">Video Date &#8597;</th>
+                <th ng-click="setTitle()">Title &#8597;</th>
+                <th ng-click="setUpDate()">Upload Date &#8597;</th>
+                <th ng-click="setAge()">On Air Time &#8597;</th>
+                <th ng-click="setGenre()">Genre &#8597;</th>
+                <th ng-click="setCur()">Incurred Value &#8597;</th>
+                <th ng-click="setCur()">Value in INR &#8597;</th>
+                <th ng-click="setSt()">Current Status &#8597;</th>
+            </tr>
+            <tr ng-repeat="data in datas | limitTo: limit | orderBy:order |filter:search">
+                <td>{{data.video_date | date:"dd/MM/yyyy"}}</td>
+                <td>{{data.title}}</td>
+                <td>{{data.UpDate | date:"dd/MM/yyyy"}}</td>  
+                <td>{{data.video_date | findAge}}</td>
+                <td>{{data.genre | uppercase }}</td>
+                <td>{{data.orVal | currency:"$"}}</td>
+                <td>{{data.orVal | inrValue }}</td>
+                <td>{{data.orSt | lowercase }}</td>
+            </tr>
+        </table>
+    </div>
+</section><br>
+<div style="border: 0px; height: 25px; width: 100%; background-color: rgba(0, 0, 0, 0.568); padding-top: 5px; position: fixed; margin-top: 240px;" >
+    <p style="color: aliceblue; text-align: center;">Mohit Mehta 2247267 MCA 2B</p>
+</div>
+
+</body>
+</html>
